@@ -1,0 +1,23 @@
+---
+- name: Download Tomcat
+  get_url:
+    url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.100/bin/apache-tomcat-8.5.100.tar.gz
+    dest: /tmp/apache-tomcat-8.5.100.tar.gz
+
+- name: Extract Tomcat
+  unarchive:
+    src: /tmp/apache-tomcat-8.5.100.tar.gz
+    dest: /opt
+    remote_src: yes
+
+- name: Ensure tomcat8 user exists
+  user:
+    name: tomcat8
+    system: yes
+
+- name: Change ownership of Tomcat
+  file:
+    path: /opt/apache-tomcat-8.5.100
+    owner: tomcat8
+    group: tomcat8
+    recurse: yes

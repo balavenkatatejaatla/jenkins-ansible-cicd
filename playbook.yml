@@ -1,0 +1,11 @@
+---
+- name: Setup Student App Environment
+  hosts: student_app
+  become: yes
+
+  roles:
+    - common
+    - java
+    - tomcat
+    - mysql
+    - deploy

@@ -1,0 +1,12 @@
+---
+- name: Deploy WAR file to Tomcat
+  copy:
+    src: "{{ tomcat_path }}"
+    dest: /opt/apache-tomcat-8.5.100/webapps/
+  notify: Restart Tomcat
+
+handlers:
+  - name: Restart Tomcat
+    systemd:
+      name: tomcat
+      state: restarted

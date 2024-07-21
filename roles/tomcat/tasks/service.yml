@@ -1,0 +1,28 @@
+---
+- name: Create Tomcat service
+  copy:
+    dest: /etc/systemd/system/tomcat.service
+    content: |
+      [Unit]
+      Description=Apache Tomcat Web Application Container
+      After=network.target
+
+      [Service]
+      Type=forking
+      User=tomcat8
+      Group=tomcat8
+      Environment=CATALINA_PID=/opt/apache-tomcat-8.5.100/temp/tomcat.pid
+      Environment=CATALINA_HOME=/opt/apache-tomcat-8.5.100
+      Environment=CATALINA_BASE=/opt/apache-tomcat-8.5.100
+      Environment='CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC'
+      ExecStart=/opt/apache-tomcat-8.5.100/bin/startup.sh
+      ExecStop=/opt/apache-tomcat-8.5.100/bin/shutdown.sh
+
+      [Install]
+      WantedBy=multi-user.target
+
+- name: Reload systemd and enable Tomcat service
+  systemd:
+    name: tomcat
+    enabled: yes
+    state: restarted

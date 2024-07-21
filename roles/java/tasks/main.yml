@@ -1,0 +1,6 @@
+---
+- name: Ensure Java is installed
+  apt:
+    name: openjdk-8-jdk
+    state: present
+  become: yes

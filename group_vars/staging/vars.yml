@@ -1,0 +1,6 @@
+---
+db_host: "staging_db_host"
+db_name: "studentapp_staging"
+db_user: "staging_user"
+mysql_path: "/root/staging/script.sql"
+tomcat_path: "/root/staging/studentapp.war"

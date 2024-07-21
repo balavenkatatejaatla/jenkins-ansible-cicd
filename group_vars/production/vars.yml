@@ -1,0 +1,6 @@
+---
+db_host: "prod_db_host"
+db_name: "studentapp_prod"
+db_user: "prod_user"
+mysql_path: "/root/prod/script.sql"
+tomcat_path: "/root/prod/studentapp.war"
